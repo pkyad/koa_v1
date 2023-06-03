@@ -1,10 +1,10 @@
 import * as Koa from 'koa';
-import * as koaBody from 'koa-body';
+import { koaBody } from 'koa-body';
 import * as cors from '@koa/cors';
+import { koaSwagger } from 'koa2-swagger-ui';
 
 const serve = require('koa-static');
 const koaValidator = require('koa-async-validator');
-const koaSwagger = require('koa2-swagger-ui');
 const koaBunyanLogger = require('koa-bunyan-logger');
 
 import { config } from './config';
@@ -25,8 +25,8 @@ app.use(
   koaSwagger({
     routePrefix: '/swagger',
     swaggerOptions: {
-      url: '/swagger.yml'
-    }
+      url: '/swagger.yml',
+    },
   })
 );
 

@@ -4,9 +4,9 @@
     "target": "es2017",
     "noImplicitAny": true,
     "outDir": "./dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["mocha"],
   },
-  "types": ["mocha"],
   "include": ["./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules", "dist"]
 }
