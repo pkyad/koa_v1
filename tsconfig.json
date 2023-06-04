@@ -5,8 +5,9 @@
     "noImplicitAny": true,
     "outDir": "./dist",
     "sourceMap": true,
-    "types": ["mocha"],
+    "types": ["jest", "node"],
     "allowJs": true,
+    // "esModuleInterop" : true
   },
   "include": ["./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules", "dist"]
