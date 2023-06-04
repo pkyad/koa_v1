@@ -12,8 +12,7 @@
     "image:build": "docker build --tag koa-typescript-starter .",
     "image:run": "docker run --rm -ti -p 3000:3000 koa-typescript-starter",
     "test": "NODE_ENV=test mocha -r ts-node/register ./test/**/*.spec.js  && exit 0",
-    "coverage": "NODE_ENV=test nyc --reporter=html --reporter=text mocha --exit -r ts-node/register ./test/**/*.spec.js",
-    "coverage:coveralls": "NODE_ENV=test nyc --reporter=lcov --reporter=text-lcov mocha --exit -r ts-node/register ./test/**/*.spec.js | coveralls"
+    "coverage": "NODE_ENV=test nyc --reporter=html --reporter=text mocha --exit -r ts-node/register ./test/**/*.spec.js"
   },
   "repository": {
     "type": "git",
