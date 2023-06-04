@@ -1,9 +1,9 @@
-import * as Koa from 'koa';
+import Koa from 'koa';
 import { koaBody } from 'koa-body';
-import * as cors from '@koa/cors';
+import cors from '@koa/cors';
 import { koaSwagger } from 'koa2-swagger-ui';
 
-const serve = require('koa-static');
+import serve from 'koa-static';
 const koaValidator = require('koa-async-validator');
 const koaBunyanLogger = require('koa-bunyan-logger');
 

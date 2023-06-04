@@ -1,7 +1,7 @@
-const request = require('supertest');
+import request from 'supertest';
 import { server } from '../app/app';
 
-let app: typeof request;
+let app: ReturnType<typeof request>;
 beforeAll(async () => {
   // do something before anything else runs
   app = request(server);
