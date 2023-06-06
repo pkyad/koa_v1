@@ -1,11 +1,13 @@
 import request from 'supertest';
 import { server } from '../app/app';
+import { classNames } from '@pkyad/jslib1';
 
 let app: ReturnType<typeof request>;
 beforeAll(async () => {
   // do something before anything else runs
   app = request(server);
   console.log('Jest starting!');
+  console.log(classNames('dsdas', 'second'));
 });
 // close the server after each test
 afterAll(() => {

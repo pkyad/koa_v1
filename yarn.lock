@@ -578,6 +578,11 @@
   dependencies:
     vary "^1.1.2"
 
+"@pkyad/jslib1@0.1.0":
+  version "0.1.0"
+  resolved "https://npm.pkg.github.com/download/@pkyad/jslib1/0.1.0/fa00700668d9699c094cf8a252424a37079d7dc8#fa00700668d9699c094cf8a252424a37079d7dc8"
+  integrity sha512-y592tJEQkAJbeVQfnNQj+UJcnqf7fQW6ujQb0bNzROiF62Us/0ZPKRTUW+FMKy/WPnW2cXI3qFLGV0llFfXlIQ==
+
 "@sinclair/typebox@^0.25.16":
   version "0.25.24"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.25.24.tgz#8c7688559979f7079aacaf31aa881c3aa410b718"
