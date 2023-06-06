@@ -1,7 +1,7 @@
-import { Connection, ConnectionOptions, createConnection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { UserEntity } from './models/Tenant.entity';
 
-const connectionOpts: ConnectionOptions = {
+const appDataSource = new DataSource({
   type: 'sqlite',
   database: 'db.sqlite3',
   synchronize: true,
@@ -9,8 +9,6 @@ const connectionOpts: ConnectionOptions = {
   entities: [UserEntity],
   subscribers: [],
   migrations: [],
-};
+});
 
-const connection: Promise<Connection> = createConnection(connectionOpts);
-
-export default connection;
+export default appDataSource;

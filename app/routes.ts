@@ -2,6 +2,7 @@ import Router from 'koa-router';
 import { UserEntity } from './models/Tenant.entity';
 import { Repository, getRepository } from 'typeorm';
 const router = new Router();
+import appDataSource from './db';
 
 /**
  * Base route, return a 401
@@ -13,16 +14,12 @@ router.get('/', async (ctx) => (ctx.status = 401));
  */
 router.get('/healthcheck', async (ctx) => (ctx.body = 'OK 2'));
 router.get('/test1', async (ctx) => {
-  const userRepo: Repository<UserEntity> = getRepository(UserEntity);
+  const user: UserEntity = new UserEntity();
+  user.firstName = 'fn';
+  user.lastName = 'ln';
+  user.age = 29;
 
-  const user: UserEntity = userRepo.create({
-    firstName: '1',
-    lastName: '2',
-    age: 1,
-  });
-
-  // Persist it to the database.
-  await userRepo.save(user);
+  await appDataSource.manager.save(user);
 
   // Find the requested movie.
   //   const movies = await userRepo.find();

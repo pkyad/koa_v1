@@ -2,7 +2,7 @@ import request from 'supertest';
 import { server } from '../app/app';
 import { classNames } from '@pkyad/jslib1';
 import { UserEntity } from '../app/models/Tenant.entity';
-import { Repository, getRepository } from 'typeorm';
+import appDataSource from '../app/db';
 
 let app: ReturnType<typeof request>;
 beforeAll(async () => {
@@ -29,8 +29,7 @@ describe('first suite', () => {
   it('checks if unauthorized', async () => {
     const response = await app.get('/');
 
-    const userRepo: Repository<UserEntity> = getRepository(UserEntity);
-    const allUsers = await userRepo.find();
+    const allUsers = await appDataSource.manager.find(UserEntity);
     console.log(allUsers);
     expect(response.status).toBe(401);
   });

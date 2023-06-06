@@ -11,7 +11,7 @@ import { config } from './config';
 import { routes } from './routes';
 import { logger } from './logger';
 import 'reflect-metadata';
-import connection from './db';
+import appDataSource from './db';
 
 const app = new Koa();
 
@@ -34,10 +34,9 @@ app.use(
 
 export let server: Promise<ReturnType<typeof app.listen>> = new Promise(
   (resolve, _reject) => {
-    connection.then(() => {
+    appDataSource.initialize().then(() => {
       console.log('DB connected');
       resolve(app.listen(config.port));
-
       console.log(`Server running on port ${config.port}`);
     });
   }
