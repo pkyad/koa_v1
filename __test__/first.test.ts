@@ -1,17 +1,19 @@
 import request from 'supertest';
 import { server } from '../app/app';
 import { classNames } from '@pkyad/jslib1';
+import { UserEntity } from '../app/models/Tenant.entity';
+import { Repository, getRepository } from 'typeorm';
 
 let app: ReturnType<typeof request>;
 beforeAll(async () => {
   // do something before anything else runs
-  app = request(server);
+  app = request(await server);
   console.log('Jest starting!');
   console.log(classNames('dsdas', 'second'));
 });
 // close the server after each test
-afterAll(() => {
-  server.close();
+afterAll(async () => {
+  (await server).close();
   console.log('server closed!');
 });
 
@@ -26,6 +28,10 @@ describe('first suite', () => {
   });
   it('checks if unauthorized', async () => {
     const response = await app.get('/');
+
+    const userRepo: Repository<UserEntity> = getRepository(UserEntity);
+    const allUsers = await userRepo.find();
+    console.log(allUsers);
     expect(response.status).toBe(401);
   });
 });
