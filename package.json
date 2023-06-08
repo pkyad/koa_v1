@@ -12,7 +12,8 @@
     "image:build": "docker build --tag koa-typescript-starter .",
     "image:run": "docker run --rm -ti -p 3000:3000 koa-typescript-starter",
     "test": "jest",
-    "cover": "jest --coverage"
+    "cover": "jest --coverage",
+    "add-tables": "rm app/models/*;tsx scripts/add-models.ts"
   },
   "repository": {
     "type": "git",
@@ -46,11 +47,14 @@
     "@types/supertest": "^2.0.12",
     "jest": "^29.5.0",
     "koa-async-validator": "^0.4.1",
+    "node-fetch": "^3.3.1",
     "nodemon": "^2.0.22",
+    "pg": "^8.11.0",
     "source-map-support": "^0.5.21",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.1.3"
   }
 }

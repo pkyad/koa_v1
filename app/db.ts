@@ -1,12 +1,16 @@
 import { DataSource } from 'typeorm';
-import { UserEntity } from './models/Tenant.entity';
+import models from './models';
 
 const appDataSource = new DataSource({
-  type: 'sqlite',
-  database: 'db.sqlite3',
-  synchronize: true,
+  type: 'postgres',
+  host: '192.168.10.202',
+  port: 5432,
+  username: 'postgres',
+  password: 'postgres',
+  database: 'django',
+  synchronize: false,
   logging: true,
-  entities: [UserEntity],
+  entities: models,
   subscribers: [],
   migrations: [],
 });

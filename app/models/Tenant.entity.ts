@@ -1,16 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity('user')
-export class UserEntity {
+
+
+@Entity("shared_tenant")
+export default class TenantEntity {
+  /*
+  *Tenant model , this is equivalent to an organization or BU unit
+  */
+  
+  @Column()
+  name: string;
+  
+  @Column()
+  is_active: boolean;
+  
+  @Column()
+  expiry_date: string;
+  
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
-
-  @Column()
-  age: number;
+  
 }
