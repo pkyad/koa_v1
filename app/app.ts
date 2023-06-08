@@ -7,11 +7,11 @@ import serve from 'koa-static';
 const koaValidator = require('koa-async-validator');
 const koaBunyanLogger = require('koa-bunyan-logger');
 
-import { config } from './config';
-import { routes } from './routes';
-import { logger } from './logger';
+import { config } from '@/config';
+import { routes } from '@/routes';
+import { logger } from '@/logger';
 import 'reflect-metadata';
-import appDataSource from './db';
+import appDataSource from '@/db';
 
 const app = new Koa();
 

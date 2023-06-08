@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build && node ./dist/index.js",
     "build": "npm run lint && node_modules/typescript/bin/tsc",
-    "watch": "nodemon --watch 'app/**/*' -e ts --exec 'ts-node' ./app/app.ts",
+    "watch": "nodemon --watch 'app/**/*' -e ts --exec 'ts-node' -r tsconfig-paths/register ./app/app.ts",
     "lint": "node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --force",
     "fix": "node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --fix --force",
     "image:build": "docker build --tag koa-typescript-starter .",
@@ -54,6 +54,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "tsx": "^3.12.7",
     "typescript": "^5.1.3"
   }

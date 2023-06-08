@@ -1,8 +1,8 @@
 import Router from 'koa-router';
-import models from './models';
+import models from '@/models';
 const router = new Router();
-import appDataSource from './db';
-import { TestEntity, choice_fieldEnum } from './models';
+import appDataSource from '@/db';
+import { TestEntity, choice_fieldEnum } from '@/models';
 
 /**
  * Base route, return a 401
