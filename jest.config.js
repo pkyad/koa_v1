@@ -2,7 +2,10 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  collectCoverageFrom: ['<rootDir>/app/**/*.{ts,js}'],
+  collectCoverageFrom: [
+    '<rootDir>/app/**/*.{ts,js}',
+    '!<rootDir>/app/models/**/*.{ts,tsx,js,jsx}',
+  ],
   modulePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   testMatch: ['<rootDir>/__test__/**/?(*.)+(spec|test).[jt]s'],
   moduleNameMapper: {

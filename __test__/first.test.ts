@@ -1,8 +1,8 @@
 import request from 'supertest';
-import { server } from '../app/app';
+import { server } from '@/app';
 import { classNames } from '@pkyad/jslib1';
 import { TestEntity } from '@/models';
-import appDataSource from '../app/db';
+import appDataSource from '@/db';
 
 let app: ReturnType<typeof request>;
 beforeAll(async () => {
