@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { server } from '../app/app';
 import { classNames } from '@pkyad/jslib1';
-import { UserEntity } from '../app/models/Tenant.entity';
+import { TestEntity } from '@/models';
 import appDataSource from '../app/db';
 
 let app: ReturnType<typeof request>;
@@ -14,6 +14,7 @@ beforeAll(async () => {
 // close the server after each test
 afterAll(async () => {
   (await server).close();
+  appDataSource.destroy();
   console.log('server closed!');
 });
 
@@ -29,7 +30,7 @@ describe('first suite', () => {
   it('checks if unauthorized', async () => {
     const response = await app.get('/');
 
-    const allUsers = await appDataSource.manager.find(UserEntity);
+    const allUsers = await appDataSource.manager.find(TestEntity);
     console.log(allUsers);
     expect(response.status).toBe(401);
   });

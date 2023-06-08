@@ -5,6 +5,10 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/app/**/*.{ts,js}'],
   modulePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   testMatch: ['<rootDir>/__test__/**/?(*.)+(spec|test).[jt]s'],
+  moduleNameMapper: {
+    // Handle module aliases (this will be automatically configured for you soon)
+    '^@/(.*)$': '<rootDir>/app/$1',
+  },
   coverageThreshold: {
     global: {
       branches: 50,

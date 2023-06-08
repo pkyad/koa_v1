@@ -3,7 +3,7 @@ import models from '@/models';
 
 const appDataSource = new DataSource({
   type: 'postgres',
-  host: '192.168.10.202',
+  host: 'localhost',
   port: 5432,
   username: 'postgres',
   password: 'postgres',
