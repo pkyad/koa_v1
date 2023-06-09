@@ -1,5 +1,6 @@
-import prom from 'prom-client';
-const collectDefaultMetrics = prom.collectDefaultMetrics;
-collectDefaultMetrics({ prefix: 'forethought' });
+import prom from 'prom-client'
 
-export default prom;
+const collectDefaultMetrics = prom.collectDefaultMetrics
+collectDefaultMetrics({ prefix: 'forethought' })
+
+export default prom

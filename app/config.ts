@@ -1,7 +1,7 @@
 export interface IConfig {
-  port: number;
+	port: number
 }
 
 export const config: IConfig = {
-  port: parseInt(process.env.NODE_PORT, 10) || 3000,
-};
+	port: parseInt(process.env.NODE_PORT ?? '10') || 3000
+}
