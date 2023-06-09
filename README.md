@@ -1,4 +1,4 @@
-# KOA2 TypeScript Starter - test1
+# KOA2 TypeScript Starter - test2
 
 A NodeJS server built with the KOA2 framework using TypeScript.
 
