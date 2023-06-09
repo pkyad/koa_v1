@@ -85,7 +85,7 @@ const main = async (): Promise<void> => {
   }
   console.log('Started.....');
   console.log(`Fetching for ${answer}`);
-  let servicesToFetch = [];
+  let servicesToFetch: any[] = [];
   if (answer === 'all') {
     servicesToFetch = services.endpoints;
   } else {
@@ -147,13 +147,15 @@ const main = async (): Promise<void> => {
       const indexTemplate = `
 import { DefaultApi } from './apis'
 import { Configuration } from './runtime'
+import fetch from 'node-fetch'
 
 export * from './runtime'
 export * from './apis'
 export * from './models'
 
 const configuration = new Configuration({
-	basePath: '${(service[options.env] as Endpoint).base_url}'
+	basePath: '${(service[options.env] as Endpoint).base_url}',
+  fetchApi: fetch as any
 })
 const ${service.alias as string}Client = new DefaultApi(configuration)
 export default ${service.alias as string}Client
@@ -165,7 +167,7 @@ export default ${service.alias as string}Client
       );
 
       const serviceIndexTemplate =
-        services.endpoints
+        servicesToFetch
           .map((endpoint) => {
             return `export { default as ${endpoint.alias}Service } from './${endpoint.alias}'`;
           })

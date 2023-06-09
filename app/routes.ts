@@ -6,7 +6,6 @@ import { TestEntity, choice_fieldEnum } from '@/models';
 import prom from '@/measure';
 import { Context } from 'koa';
 import swaggerJsdoc from 'swagger-jsdoc';
-import { djangoService } from './services';
 
 const options = {
   definition: {
