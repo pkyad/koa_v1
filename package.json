@@ -1,6 +1,6 @@
 {
 	"name": "koa-typescript-starter",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"description": "A starter/seed for KOA2/TypeScript.",
 	"main": "app.js",
 	"scripts": {
@@ -18,7 +18,9 @@
 		"update-openapi-service": "openapi-generator-cli generate --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"fetch-services": "tsx scripts/fetch-services.ts",
 		"prepare": "husky install",
-		"commitlint": "commitlint --edit"
+		"commitlint": "commitlint --edit",
+		"changeset": "changeset",
+		"gen-changelog": "changeset version"
 	},
 	"repository": {
 		"type": "git",
@@ -58,6 +60,7 @@
 		"typeorm": "^0.3.16"
 	},
 	"devDependencies": {
+		"@changesets/cli": "^2.26.1",
 		"@commitlint/config-conventional": "^17.6.5",
 		"@inquirer/select": "^1.2.1",
 		"@openapitools/openapi-generator-cli": "^2.6.0",
