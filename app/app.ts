@@ -1,18 +1,17 @@
-import Koa, { ParameterizedContext } from 'koa';
-import { koaBody } from 'koa-body';
+import { config } from '@/config';
+import appDataSource from '@/db';
+import { logger } from '@/logger';
+import { routes } from '@/routes';
+import { djangoService } from '@/services';
 import cors from '@koa/cors';
+import Koa from 'koa';
 import { koaSwagger } from 'koa2-swagger-ui';
-
+import { koaBody } from 'koa-body';
 import serve from 'koa-static';
+import 'reflect-metadata';
+
 const koaValidator = require('koa-async-validator');
 const koaBunyanLogger = require('koa-bunyan-logger');
-
-import { config } from '@/config';
-import { routes } from '@/routes';
-import { logger } from '@/logger';
-import 'reflect-metadata';
-import appDataSource from '@/db';
-import { djangoService } from './services';
 
 const app = new Koa();
 
