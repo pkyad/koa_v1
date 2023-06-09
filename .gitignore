@@ -4,3 +4,5 @@ package-lock.json
 /coverage
 /dist
 app/models
+app/services
+docs
