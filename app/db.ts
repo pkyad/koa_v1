@@ -15,4 +15,13 @@ const appDataSource = new DataSource({
 	migrations: []
 })
 
-export default appDataSource
+export default appDataSource.manager
+
+export const connection = {
+	disconnect: async () => {
+		await appDataSource.destroy()
+	},
+	connect: async () => {
+		await appDataSource.initialize()
+	}
+}

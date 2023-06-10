@@ -1,9 +1,11 @@
-import appDataSource from '@/db'
+import { cache } from '@/app'
+import db from '@/db'
 import prom from '@/measure'
 import { choice_fieldEnum, TestEntity } from '@/models'
 import { type Context } from 'koa'
 import Router from 'koa-router'
 import swaggerJsdoc from 'swagger-jsdoc'
+import { djangoService } from './services'
 
 const router = new Router()
 
@@ -56,7 +58,7 @@ const testHandler = async (ctx: Context) => {
 	user.field3 = true
 	user.choice_field = choice_fieldEnum.choice1
 	todocounter.inc()
-	await appDataSource.manager.save(user)
+	await db.save(user)
 	// Find the requested movie.
 	//   const movies = await userRepo.find();
 	ctx.body = { key: 'val' }
@@ -75,5 +77,12 @@ const promHandler = async (ctx: Context) =>
 	(ctx.body = await prom.register.metrics())
 
 router.get('/metrics', promHandler)
+
+router.get('/cache-test', async (ctx: Context) => {
+	ctx.body = { key: await cache.get('koa-ts-data') }
+})
+router.get('/external-service-test', async (ctx: Context) => {
+	ctx.body = await djangoService.listtestView4s()
+})
 
 export const routes = router.routes()

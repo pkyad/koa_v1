@@ -1,5 +1,5 @@
 import { config } from '@/config'
-import appDataSource from '@/db'
+import { connection } from '@/db'
 import { logger } from '@/logger'
 import { routes } from '@/routes'
 import cors from '@koa/cors'
@@ -8,7 +8,16 @@ import { koaSwagger } from 'koa2-swagger-ui'
 import { koaBody } from 'koa-body'
 import koaBunyanLogger from 'koa-bunyan-logger'
 import serve from 'koa-static'
+import { createClient } from 'redis'
 import 'reflect-metadata'
+
+export const cache = createClient({
+	url: 'redis://localhost:6379'
+})
+
+cache.on('error', () => {
+	logger.info('Redis Client Error')
+})
 
 const koaValidator = require('koa-async-validator')
 
@@ -36,11 +45,12 @@ app.use(
 
 export const server = new Promise<ReturnType<typeof app.listen>>(
 	(resolve, _reject) => {
-		appDataSource.initialize().then(() => {
+		connection.connect().then(() => {
 			logger.info('DB connected')
-			resolve(app.listen(config.port))
-			logger.info(`Server running on port ${config.port}`)
-			logger.info('test handler running')
+			cache.connect().then(() => {
+				resolve(app.listen(config.port))
+				logger.info(`Server running on port ${config.port}`)
+			})
 		})
 	}
 )

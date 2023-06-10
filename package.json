@@ -13,7 +13,7 @@
 		"image:run": "docker run --rm -ti -p 3000:3000 koa-typescript-starter",
 		"test": "jest",
 		"cover": "jest --coverage",
-		"add-tables": "tsx scripts/add-models.ts",
+		"add-tables": "tsx scripts/add-models.ts;prettier --write ./app/models",
 		"docs": "jsdoc -c jsdoc.conf.json",
 		"update-openapi-service": "openapi-generator-cli generate --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"fetch-services": "tsx scripts/fetch-services.ts",
@@ -56,6 +56,7 @@
 		"node-fetch": "2",
 		"pg": "^8.11.0",
 		"prom-client": "^14.2.0",
+		"redis": "^4.6.7",
 		"reflect-metadata": "^0.1.13",
 		"typeorm": "^0.3.16"
 	},
