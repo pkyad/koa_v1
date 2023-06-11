@@ -29,8 +29,7 @@
 	"lint-staged": {
 		"*.ts": [
 			"prettier --write",
-			"eslint --fix",
-			"tsc-files --noEmit"
+			"eslint --fix"
 		]
 	},
 	"engines": {

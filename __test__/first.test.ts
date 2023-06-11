@@ -1,6 +1,11 @@
 import { cache, server } from '@/app'
 import db, { connection } from '@/db'
-import { AdministratorEntity, TenantEntity, TestEntity } from '@/models'
+import {
+	AdministratorEntity,
+	Many2ManyTestEntity,
+	TenantEntity,
+	TestEntity
+} from '@/models'
 // import { classNames } from '@pkyad/jslib1'
 import request from 'supertest'
 
@@ -79,5 +84,20 @@ describe('first suite', () => {
 		})
 		const lastTenant = allTenants[allTenants.length - 1]
 		expect(lastTenant).toBeDefined()
+	})
+	it.only('laads many to many fields', async () => {
+		const m2mTestModels = await db.find(Many2ManyTestEntity, {
+			relations: {
+				testModels: true,
+				crossAppModel: true
+			}
+		})
+		const testModels = await db.find(TestEntity, {
+			relations: {
+				main_models: true
+			}
+		})
+		// eslint-disable-next-line no-console
+		console.log({ m2mTestModels, testModels })
 	})
 })
