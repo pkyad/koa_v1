@@ -1,0 +1,16 @@
+{
+	"version": "0.0.1",
+	"databases": [
+		{
+			"namespace": "iam_v1",
+			"type": "postgres",
+			"host": "localhost",
+			"port": 5432,
+			"username": "postgres",
+			"password": "postgres",
+			"database": "django",
+			"tables": [],
+			"schema": "http://localhost:8001"
+		}
+	]
+}

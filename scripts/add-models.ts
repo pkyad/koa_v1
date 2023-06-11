@@ -1,11 +1,37 @@
 /* eslint-disable no-console */
+import checkbox, { Separator } from '@inquirer/checkbox'
 import fetch from 'node-fetch'
 
 const fs = require('fs')
 const BASE_DIR = 'app/models/'
+const BASE_URL = 'http://localhost:8001'
 
 const main = async (): Promise<void> => {
-	const res = await fetch('http://localhost:8001/ts/shared/')
+	const _allModelsResponse: any = await fetch(BASE_URL + '/get-all-models')
+
+	const allModels = await _allModelsResponse.json()
+	const choices: any[] = []
+	Object.keys(allModels).forEach((key) => {
+		choices.push(new Separator())
+		choices.push(new Separator(`${key}`))
+
+		allModels[key].forEach((model: any) => {
+			choices.push({
+				value: model.name,
+				name: `   ${model.name}`,
+				checked: true
+			})
+		})
+	})
+
+	const answer = await checkbox({
+		message: 'Select the SQL models you want to add to this project',
+		choices,
+		pageSize: 40,
+		instructions: 'Use tab to select / unselect the models'
+	})
+
+	const res = await fetch(BASE_URL + '/ts/?models=' + answer.join(','))
 	const jsonResponse = (await res.json()) as any[]
 
 	if (!fs.existsSync(BASE_DIR)) {
@@ -27,4 +53,6 @@ const main = async (): Promise<void> => {
 	})
 }
 
-main()
+main().then(() => {
+	console.log('Completed successfully')
+})
