@@ -1,13 +1,23 @@
 /* eslint-disable no-console */
 import checkbox, { Separator } from '@inquirer/checkbox'
+import select from '@inquirer/select'
 import fetch from 'node-fetch'
+import dbConfigs from './../db.config.json'
 
 const fs = require('fs')
 const BASE_DIR = 'app/models/'
-const BASE_URL = 'http://localhost:8001'
 
 const main = async (): Promise<void> => {
-	const _allModelsResponse: any = await fetch(BASE_URL + '/get-all-models')
+	const dbServiceSelected = await select({
+		message: 'Select a database namespace',
+		choices: dbConfigs.databases.map((db) => {
+			return { name: db.name, value: db }
+		})
+	})
+
+	const _allModelsResponse: any = await fetch(
+		(dbServiceSelected.schema_url) + '/get-all-models'
+	)
 
 	const allModels = await _allModelsResponse.json()
 	const choices: any[] = []
@@ -15,23 +25,43 @@ const main = async (): Promise<void> => {
 		choices.push(new Separator())
 		choices.push(new Separator(`${key}`))
 
-		allModels[key].forEach((model: any) => {
+		allModels[key].forEach((model: { name: string }) => {
 			choices.push({
 				value: model.name,
 				name: `   ${model.name}`,
-				checked: true
+				checked: dbServiceSelected.models.includes(model.name as never)
 			})
 		})
 	})
 
-	const answer = await checkbox({
+	const modelsSelected = await checkbox({
 		message: 'Select the SQL models you want to add to this project',
 		choices,
 		pageSize: 40,
 		instructions: 'Use tab to select / unselect the models'
 	})
 
-	const res = await fetch(BASE_URL + '/ts/?models=' + answer.join(','))
+	const clonedDBConfig = JSON.parse(JSON.stringify(dbConfigs))
+
+	clonedDBConfig.databases[0].models = modelsSelected as any
+
+	try {
+		fs.writeFileSync(
+			'db.config.json',
+			JSON.stringify(clonedDBConfig),
+			(err: any) => {
+				console.error(err)
+			}
+		)
+	} catch (err) {
+		console.log(err)
+	}
+
+	const res = await fetch(
+		(dbServiceSelected.schema_url) +
+			'/ts/?models=' +
+			modelsSelected.join(',')
+	)
 	const jsonResponse = (await res.json()) as any[]
 
 	if (!fs.existsSync(BASE_DIR)) {

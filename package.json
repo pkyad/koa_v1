@@ -13,7 +13,7 @@
 		"image:run": "docker run --rm -ti -p 3000:3000 koa-typescript-starter",
 		"test": "jest",
 		"cover": "jest --coverage",
-		"add-tables": "tsx scripts/add-models.ts;prettier --write ./app/models",
+		"add-tables": "tsx scripts/add-models.ts;prettier --write ./app/models;prettier --write db.config.json",
 		"docs": "jsdoc -c jsdoc.conf.json",
 		"update-openapi-service": "openapi-generator-cli generate --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"fetch-services": "tsx scripts/fetch-services.ts",
