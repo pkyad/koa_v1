@@ -9,7 +9,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "ckolkman.vscode-postgres"
+        "ckolkman.vscode-postgres",
+        "ritwickdey.LiveServer"
       ]
     }
   }
