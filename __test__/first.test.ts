@@ -85,7 +85,7 @@ describe('first suite', () => {
 		const lastTenant = allTenants[allTenants.length - 1]
 		expect(lastTenant).toBeDefined()
 	})
-	it.only('laads many to many fields', async () => {
+	it('laads many to many fields', async () => {
 		const m2mTestModels = await db.find(Many2ManyTestEntity, {
 			relations: {
 				testModels: true,

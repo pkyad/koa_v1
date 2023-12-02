@@ -61,7 +61,9 @@ const testHandler = async (ctx: Context) => {
 	await db.save(user)
 	// Find the requested movie.
 	//   const movies = await userRepo.find();
-	ctx.body = { key: 'val' }
+	ctx.body = {
+		key: 'val'
+	}
 }
 
 router.get('/test1', testHandler)
