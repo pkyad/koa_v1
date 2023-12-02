@@ -47,14 +47,14 @@ describe('first suite', () => {
 	})
 	it('checks if tenants can be created with adminstrator', async () => {
 		const tenant = new TenantEntity()
-		tenant.name = 'second tenant 10'
+		tenant.name = 'second tenant 11'
 		tenant.is_active = true
 		tenant.expiry_date = new Date().toDateString()
 
 		await db.save(tenant)
 
 		const admin = new AdministratorEntity()
-		admin.email = 'test10@gmail.com'
+		admin.email = 'test11@gmail.com'
 		admin.is_active = true
 		admin.is_admin = true
 		admin.is_staff = true
