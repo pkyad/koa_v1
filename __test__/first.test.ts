@@ -5,7 +5,7 @@ import {
 	Many2ManyTestEntity,
 	TenantEntity,
 	TestEntity
-} from '@/models'
+} from '@/models/i_am_1'
 // import { classNames } from '@pkyad/jslib1'
 import request from 'supertest'
 

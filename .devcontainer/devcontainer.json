@@ -10,7 +10,8 @@
     "vscode": {
       "extensions": [
         "ckolkman.vscode-postgres",
-        "ritwickdey.LiveServer"
+        "ritwickdey.LiveServer",
+        "esbenp.prettier-vscode"
       ]
     }
   }

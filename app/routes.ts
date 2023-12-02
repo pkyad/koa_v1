@@ -1,7 +1,7 @@
 import { cache } from '@/app'
 import db from '@/db'
 import prom from '@/measure'
-import { choice_fieldEnum, TestEntity } from '@/models'
+import { choice_fieldEnum, TestEntity } from '@/models/i_am_1'
 import { type Context } from 'koa'
 import Router from 'koa-router'
 import swaggerJsdoc from 'swagger-jsdoc'

@@ -1,4 +1,4 @@
-import models from '@/models'
+import models from '@/models/i_am_1'
 import { DataSource } from 'typeorm'
 
 const appDataSource = new DataSource({
